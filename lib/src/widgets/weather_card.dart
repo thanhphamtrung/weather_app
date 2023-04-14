@@ -46,48 +46,71 @@ class WeatherCard extends StatelessWidget {
               ],
             ),
             Container(
-                padding: const EdgeInsets.symmetric(horizontal: 32),
-                height: 70,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.white,
-                    width: 2,
-                  ),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      '${weather?.temperature?.toStringAsFixed(0) ?? 'N/A'}°C',
-                      style: const TextStyle(
-                        fontSize: 16,
-                      ),
-                    ),
-                    Container(
-                      color: Colors.black,
-                      height: 25,
-                      width: 0.5,
-                    ),
-                    Text(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                border:
+                    Border.all(color: Colors.white, width: 3, strokeAlign: 3),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
                       'Humidity: ${weather?.humidity?.toStringAsFixed(0) ?? 'N/A'}%',
                       style: const TextStyle(
                         fontSize: 16,
                       ),
                     ),
-                    Container(
-                      color: Colors.black,
-                      height: 25,
-                      width: 0.5,
-                    ),
-                    Text(
-                      'Wind: ${weather?.windSpeed?.toStringAsFixed(0) ?? 'N/A'} km/h',
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Humidity: ${weather?.humidity?.toStringAsFixed(0) ?? 'N/A'}%',
                       style: const TextStyle(
                         fontSize: 16,
                       ),
                     ),
-                  ],
-                )),
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      'Humidity: ${weather?.humidity?.toStringAsFixed(0) ?? 'N/A'}%',
+                      style: const TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Humidity: ${weather?.humidity?.toStringAsFixed(0) ?? 'N/A'}%',
+                      style: const TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Humidity: ${weather?.humidity?.toStringAsFixed(0) ?? 'N/A'}%',
+                      style: const TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      'Humidity: ${weather?.humidity?.toStringAsFixed(0) ?? 'N/A'}%',
+                      style: const TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),
