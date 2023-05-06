@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 
-import '../views/home_view.dart';
 import '../views/search_view.dart';
 
 class AppRouter {
@@ -14,7 +13,7 @@ class AppRouter {
       GoRoute(
         path: '/',
         builder: (BuildContext context, GoRouterState state) {
-          return const HomeView();
+          return const SearchView();
         },
         routes: <RouteBase>[
           GoRoute(

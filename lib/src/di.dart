@@ -2,7 +2,7 @@ import 'package:get_it/get_it.dart';
 
 import 'providers/search_provider.dart';
 import 'providers/weather_provider.dart';
-import 'services/api_service.dart';
+import 'services/weather_api.dart';
 
 final sl = GetIt.instance;
 
@@ -18,5 +18,5 @@ Future<void> init() async {
 
   sl.registerLazySingleton(() => WeatherProvider());
   sl.registerLazySingleton(() => SearchProvider());
-  sl.registerLazySingleton(() => ApiService());
+  sl.registerLazySingleton(() => WeatherApi());
 }
