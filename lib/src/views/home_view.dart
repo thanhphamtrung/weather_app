@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
-import '../di.dart';
 import '../providers/weather_provider.dart';
 import '../widgets/weather_card.dart';
 
@@ -19,16 +18,15 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     super.initState();
-    sl<WeatherProvider>().fetchWeather(context, 'London');
+    context.read<WeatherProvider>().fetchWeather(
+        context.read<WeatherProvider>().weather?.city ?? 'London');
   }
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<WeatherProvider>(builder: (_, instance, child) {
-      return Scaffold(
-          body: instance.isLoading
-              ? const Center(child: CircularProgressIndicator())
-              : WeatherCard(weather: instance.weather));
-    });
+    return Scaffold(
+        body: context.watch<WeatherProvider>().isLoading
+            ? const Center(child: CircularProgressIndicator())
+            : WeatherCard(weather: context.read<WeatherProvider>().weather));
   }
 }

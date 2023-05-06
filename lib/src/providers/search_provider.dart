@@ -33,7 +33,7 @@ class SearchProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void getSuggestions(String query) async {
+  Future getSuggestions(String query) async {
     // Clear the previous suggestions
     _suggestions.clear();
 

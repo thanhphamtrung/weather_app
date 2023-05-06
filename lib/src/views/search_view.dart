@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
+import '../cores/app_routes.dart';
 import '../providers/search_provider.dart';
+import '../providers/weather_provider.dart';
 
 class SearchView extends StatefulWidget {
   const SearchView({Key? key}) : super(key: key);
@@ -41,12 +44,15 @@ class _SearchViewState extends State<SearchView> {
                   ),
                 ),
               ),
-              suggestionsCallback: (query) {
+              suggestionsCallback: (query) async {
                 // Get the search suggestions using context.read
-                context.read<SearchProvider>().getSuggestions(query);
-                var x = context.read<SearchProvider>().suggestions;
+                await context.read<SearchProvider>().getSuggestions(query);
+
                 // Return the list of suggestions from the provider
-                return context.read<SearchProvider>().suggestions;
+                if (mounted) {
+                  return context.read<SearchProvider>().suggestions;
+                }
+                return [];
               },
               itemBuilder: (context, suggestion) {
                 // Find the index of the suggestion in the list of suggestions
@@ -62,14 +68,10 @@ class _SearchViewState extends State<SearchView> {
               },
               onSuggestionSelected: (suggestion) {
                 // Find the index of the suggestion in the list of suggestions
-                final index = context
-                    .watch<SearchProvider>()
-                    .suggestions
-                    .indexOf(suggestion);
-                // Update the text field with the selected suggestion using context.watch and the index
-                _controller.text =
-                    context.watch<SearchProvider>().suggestions[index];
+                context.read<SearchProvider>().search(suggestion);
               },
+              loadingBuilder: (context) => const Text('Loading'),
+              debounceDuration: const Duration(milliseconds: 500),
             ),
             const SizedBox(height: 16.0),
             Expanded(
@@ -86,11 +88,11 @@ class _SearchViewState extends State<SearchView> {
                     child: ListTile(
                       leading: const Icon(Icons.location_city),
                       title: Text(city), // The name of the city
-                      subtitle: Text(
-                          'Temperature $temp°C'), // The temperature of the city
+
                       trailing: const Icon(Icons.arrow_forward),
                       onTap: () {
-                        // Navigate to the details screen here
+                        context.read<WeatherProvider>().fetchWeather(city);
+                        context.go(AppRouter.homeScreen);
                       },
                     ),
                   );
