@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
-import 'package:weather_app/src/di.dart';
-import 'package:weather_app/src/widgets/weather_card.dart';
 
+import '../di.dart';
 import '../providers/weather_provider.dart';
+import '../widgets/weather_card.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({
+class HomeView extends StatefulWidget {
+  const HomeView({
     super.key,
   });
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<HomeView> createState() => _HomeViewState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     super.initState();

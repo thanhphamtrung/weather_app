@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/src/di.dart';
 
+import '../di.dart';
 import '../models/weather.dart';
 import '../services/api_service.dart';
 
@@ -18,7 +18,6 @@ class WeatherProvider extends ChangeNotifier {
     notifyListeners();
 
     try {
-      await Future.delayed(const Duration(seconds: 5));
       final weatherData = await sl<ApiService>().getCurrentWeather(city);
       _weather = weatherData;
       _isLoading = false;

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
+import '../cores/app_routes.dart';
 import '../models/weather.dart';
 
 class WeatherCard extends StatelessWidget {
@@ -28,7 +31,9 @@ class WeatherCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        context.go(AppRouter.searchScreen);
+                      },
                       icon: const Icon(
                         Icons.search_rounded,
                         size: 32,
