@@ -17,9 +17,13 @@ class WeatherCard extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: Colors.white.withOpacity(0.3),
-        image: const DecorationImage(
-            image: AssetImage('assets/illustrators/sunny_bg_1.png'),
-            fit: BoxFit.cover),
+        image: (weather?.temperature ?? 0) < 20
+            ? const DecorationImage(
+                image: AssetImage('assets/illustrators/coldboy_bg_1.png'),
+                fit: BoxFit.cover)
+            : const DecorationImage(
+                image: AssetImage('assets/illustrators/sunny_bg_1.png'),
+                fit: BoxFit.cover),
       ),
       child: SafeArea(
         child: Column(
@@ -74,6 +78,7 @@ class WeatherCard extends StatelessWidget {
             ),
             Container(
               padding: const EdgeInsets.all(16),
+              width: double.infinity,
               decoration: BoxDecoration(
                 border:
                     Border.all(color: Colors.white, width: 3, strokeAlign: 3),
@@ -81,60 +86,26 @@ class WeatherCard extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Humidity: ${weather?.humidity?.toStringAsFixed(0) ?? 'N/A'}%',
-                      style: const TextStyle(
-                        fontSize: 16,
-                      ),
+                  Text(
+                    weather?.dateTime != null
+                        ? 'Date Time: ${DateFormat('dd/MM/yyyy').format(weather!.dateTime!)}'
+                        : 'N/A',
+                    style: const TextStyle(
+                      fontSize: 24,
                     ),
                   ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Cloudiness: ${weather?.cloudiness?.toStringAsFixed(0) ?? 'N/A'}%',
-                      style: const TextStyle(
-                        fontSize: 16,
-                      ),
+                  const Divider(),
+                  Text(
+                    'Min Temperature: ${weather?.minTemperature?.toStringAsFixed(0) ?? 'N/A'}°C',
+                    style: const TextStyle(
+                      fontSize: 20,
                     ),
                   ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                      'WindSpeed: ${weather?.windSpeed?.toStringAsFixed(0) ?? 'N/A'}%',
-                      style: const TextStyle(
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Min Temperature: ${weather?.minTemperature?.toStringAsFixed(0) ?? 'N/A'}%',
-                      style: const TextStyle(
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Max Temperature: ${weather?.maxTemperature?.toStringAsFixed(0) ?? 'N/A'}%',
-                      style: const TextStyle(
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                      weather?.dateTime != null
-                          ? 'Date Time: ${DateFormat('dd/MM/yyyy').format(weather!.dateTime!)}'
-                          : 'N/A',
-                      style: const TextStyle(
-                        fontSize: 16,
-                      ),
+                  const Divider(),
+                  Text(
+                    'Max Temperature: ${weather?.maxTemperature?.toStringAsFixed(0) ?? 'N/A'}%',
+                    style: const TextStyle(
+                      fontSize: 16,
                     ),
                   ),
                 ],
