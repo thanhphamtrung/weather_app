@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../models/weather.dart';
 
@@ -23,6 +24,27 @@ class WeatherCard extends StatelessWidget {
           children: [
             Column(
               children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.search_rounded,
+                        size: 32,
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.my_location,
+                        size: 32,
+                      ),
+                    ),
+                    const SizedBox(width: 8)
+                  ],
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -66,7 +88,7 @@ class WeatherCard extends StatelessWidget {
                   Align(
                     alignment: Alignment.center,
                     child: Text(
-                      'Humidity: ${weather?.humidity?.toStringAsFixed(0) ?? 'N/A'}%',
+                      'Cloudiness: ${weather?.cloudiness?.toStringAsFixed(0) ?? 'N/A'}%',
                       style: const TextStyle(
                         fontSize: 16,
                       ),
@@ -75,7 +97,7 @@ class WeatherCard extends StatelessWidget {
                   Align(
                     alignment: Alignment.centerRight,
                     child: Text(
-                      'Humidity: ${weather?.humidity?.toStringAsFixed(0) ?? 'N/A'}%',
+                      'WindSpeed: ${weather?.windSpeed?.toStringAsFixed(0) ?? 'N/A'}%',
                       style: const TextStyle(
                         fontSize: 16,
                       ),
@@ -84,7 +106,7 @@ class WeatherCard extends StatelessWidget {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      'Humidity: ${weather?.humidity?.toStringAsFixed(0) ?? 'N/A'}%',
+                      'Min Temperature: ${weather?.minTemperature?.toStringAsFixed(0) ?? 'N/A'}%',
                       style: const TextStyle(
                         fontSize: 16,
                       ),
@@ -93,7 +115,7 @@ class WeatherCard extends StatelessWidget {
                   Align(
                     alignment: Alignment.center,
                     child: Text(
-                      'Humidity: ${weather?.humidity?.toStringAsFixed(0) ?? 'N/A'}%',
+                      'Max Temperature: ${weather?.maxTemperature?.toStringAsFixed(0) ?? 'N/A'}%',
                       style: const TextStyle(
                         fontSize: 16,
                       ),
@@ -102,7 +124,9 @@ class WeatherCard extends StatelessWidget {
                   Align(
                     alignment: Alignment.centerRight,
                     child: Text(
-                      'Humidity: ${weather?.humidity?.toStringAsFixed(0) ?? 'N/A'}%',
+                      weather?.dateTime != null
+                          ? 'Date Time: ${DateFormat('dd/MM/yyyy').format(weather!.dateTime!)}'
+                          : 'N/A',
                       style: const TextStyle(
                         fontSize: 16,
                       ),
