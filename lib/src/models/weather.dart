@@ -51,4 +51,33 @@ class Weather {
       dateTime: dateTime,
     );
   }
+  Weather? copyWith({
+    String? city,
+    String? description,
+    double? temperature,
+    double? feelsLike,
+    double? minTemperature,
+    double? maxTemperature,
+    int? humidity,
+    double? windSpeed,
+    int? cloudiness,
+    int? sunrise,
+    int? sunset,
+    DateTime? dateTime,
+  }) {
+    return Weather(
+      city: city ?? this.city,
+      description: description ?? this.description,
+      temperature: temperature ?? this.temperature,
+      feelsLike: feelsLike ?? this.feelsLike,
+      minTemperature: minTemperature ?? this.minTemperature,
+      maxTemperature: maxTemperature ?? this.maxTemperature,
+      humidity: humidity ?? this.humidity,
+      windSpeed: windSpeed ?? this.windSpeed,
+      cloudiness: cloudiness ?? this.cloudiness,
+      sunrise: sunrise ?? this.sunrise,
+      sunset: sunset ?? this.sunset,
+      dateTime: dateTime ?? this.dateTime,
+    );
+  }
 }
