@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:location/location.dart';
+import 'package:provider/provider.dart';
 
 import '../cores/app_routes.dart';
 import '../models/weather.dart';
+import '../providers/location_provider.dart';
 
 class WeatherCard extends StatelessWidget {
   const WeatherCard({Key? key, required this.weather}) : super(key: key);
@@ -12,6 +15,7 @@ class WeatherCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    LocationProvider locationProvider = context.read<LocationProvider>();
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -45,7 +49,16 @@ class WeatherCard extends StatelessWidget {
                     ),
                     const SizedBox(width: 8),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () async {
+                        PermissionStatus isGranted = await context
+                            .read<LocationProvider>()
+                            .checkPermissions();
+                        if (isGranted != PermissionStatus.granted) {
+                          await locationProvider.requestPermission();
+                        } else {
+                          await locationProvider.getCurrentLocation();
+                        }
+                      },
                       icon: const Icon(
                         Icons.my_location,
                         size: 32,

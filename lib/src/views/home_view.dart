@@ -27,6 +27,6 @@ class _HomeViewState extends State<HomeView> {
     return Scaffold(
         body: context.watch<WeatherProvider>().isLoading
             ? const Center(child: CircularProgressIndicator())
-            : WeatherCard(weather: context.read<WeatherProvider>().weather));
+            : WeatherCard(weather: context.watch<WeatherProvider>().weather));
   }
 }
